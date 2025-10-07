@@ -71,6 +71,7 @@ namespace MyTaskManager.ViewModels
                 Usuarios.Remove(usuario);
             }
         }
+        // asd
 
         public async Task DeleteUltimoUsuario()
         {
