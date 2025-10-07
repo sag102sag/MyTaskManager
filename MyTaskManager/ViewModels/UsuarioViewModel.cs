@@ -31,10 +31,14 @@ namespace MyTaskManager.ViewModels
         {
             _usuarioService = usuarioService;
             AddUsuarioCommand = new RelayCommand(async _ => await AddUsuario());
+            DeleteUsuarioCommand = new RelayCommand(async usuario => await DeleteUsuario((Usuario)usuario));
+            DeleteUltimoUsuarioCommand = new RelayCommand(async _ => await DeleteUltimoUsuario());
             _ =CargarUsuarios();
         }
 
         public ICommand AddUsuarioCommand { get; }
+        public ICommand DeleteUsuarioCommand { get; }
+        public ICommand DeleteUltimoUsuarioCommand { get; }
 
 
         public async Task CargarUsuarios()
@@ -57,6 +61,25 @@ namespace MyTaskManager.ViewModels
 
             await _usuarioService.AddAsync(nuevoUsuario);
             Usuarios.Add(nuevoUsuario);
+        }
+
+        public async Task DeleteUsuario(Usuario usuario)
+        {
+            if (usuario != null)
+            {
+                await _usuarioService.DeleteAsync(usuario.Id);
+                Usuarios.Remove(usuario);
+            }
+        }
+
+        public async Task DeleteUltimoUsuario()
+        {
+            var usuario = Usuarios.LastOrDefault();
+            if (usuario != null)
+            {
+                await _usuarioService.DeleteAsync(usuario.Id);
+                Usuarios.Remove(usuario);
+            }
         }
     }
 }

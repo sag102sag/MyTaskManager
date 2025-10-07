@@ -12,6 +12,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+
         <StackPanel
             Grid.Row="0"
             Margin="0,0,0,10"
@@ -20,6 +21,12 @@
                 Padding="10,5"
                 Command="{Binding AddUsuarioCommand}"
                 Content="Agregar Usuario"
+                Style="{StaticResource MaterialDesignRaisedButton}" />
+            <Button
+                Margin="5"
+                Padding="10,5"
+                Command="{Binding DeleteUltimoUsuarioCommand}"
+                Content="Eliminar Último Usuario"
                 Style="{StaticResource MaterialDesignRaisedButton}" />
         </StackPanel>
 
@@ -43,6 +50,18 @@
                     Width="250"
                     Binding="{Binding Email}"
                     Header="Email" />
+                <DataGridTemplateColumn Width="100" Header="Acciones">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Padding="10,5"
+                                Command="{Binding DataContext.DeleteUsuarioCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                CommandParameter="{Binding}"
+                                Content="Eliminar Usuario"
+                                Style="{StaticResource MaterialDesignRaisedButton}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -35,5 +35,7 @@ namespace MyTaskManager.Views
             _viewModel = new UsuarioViewModel(usuarioService);
             DataContext = _viewModel;
         }
+
+        
     }
 }
