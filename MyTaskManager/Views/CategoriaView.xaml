@@ -16,7 +16,7 @@
 
         <Button
             Margin="5"
-            Command="{Binding AddCategoriaCommand}"
+            Command="{Binding DataContext.AddCategoriaCommand}"
             Content="Agregar Categoria"
             Style="{StaticResource MaterialDesignRaisedButton}" />
         <DataGrid
@@ -39,12 +39,12 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button
-                                    Command="{Binding DeleteCategoriaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    Command="{Binding DataContext.DeleteCategoriaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                     CommandParameter="{Binding}"
                                     Content="Eliminar"
                                     Style="{StaticResource MaterialDesignRaisedSecondaryButton}" />
                                 <Button
-                                    Command="{Binding EditarCategoriaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    Command="{Binding DataContext.EditarCategoriaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                     CommandParameter="{Binding}"
                                     Content="Editar"
                                     Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" />

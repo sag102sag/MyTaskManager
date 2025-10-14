@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using MyTaskManager.Models;
 using MyTaskManager.Services;
@@ -36,9 +37,17 @@ namespace MyTaskManager.ViewModels
 
         public async Task EliminarCategoriaAsync(Categoria categoria)
         {
-            if(categoria == null) return;
-            await _categoriaService.DeleteAsync(categoria.Id);
-            Categorias.Remove(categoria);
+            try
+            {
+                await _categoriaService.DeleteCategoriaAsync(categoria.Id);
+                Categorias.Remove(categoria);
+            }
+            catch (InvalidOperationException ex)
+            {
+
+                MessageBox.Show(ex.Message, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
         }
     }
 }

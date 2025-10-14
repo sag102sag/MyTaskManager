@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MyTaskManager.Services;
 using MyTaskManager.ViewModels;
 
 namespace MyTaskManager.Views
@@ -27,7 +28,8 @@ namespace MyTaskManager.Views
             InitializeComponent();
 
             var context = new Data.AppDbContext();
-            var categoriaService = new Services.CategoriaService(context);
+            var categoriaService = new CategoriaService(context);
+
             _viewModel = new CategoriaViewModel(categoriaService);
             DataContext = _viewModel;
         }
