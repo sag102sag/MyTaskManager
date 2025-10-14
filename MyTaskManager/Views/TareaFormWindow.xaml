@@ -1,0 +1,78 @@
+﻿<Window
+    x:Class="MyTaskManager.Views.TareaFormWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MyTaskManager.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding TituloFormularioTarea}"
+    Width="450"
+    Height="700"
+    mc:Ignorable="d">
+    <Grid Margin="40">
+        <StackPanel Orientation="Vertical">
+            <TextBlock
+                Margin="0,0,0,5"
+                Style="{StaticResource MaterialDesignTitleSmallTextBlock}"
+                Text="ID:" />
+            <TextBox
+                Margin="0,0,0,10"
+                IsEnabled="False"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                Text="{Binding TareaTemporal.Id}" />
+            <TextBlock
+                Margin="0,0,0,5"
+                Style="{StaticResource MaterialDesignTitleSmallTextBlock}"
+                Text="Título:" />
+            <TextBox
+                Margin="0,0,0,10"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                Text="{Binding TareaTemporal.Titulo, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock
+                Margin="0,0,0,5"
+                Style="{StaticResource MaterialDesignTitleSmallTextBlock}"
+                Text="Descripción:" />
+            <TextBox
+                Height="100"
+                Margin="0,0,0,10"
+                AcceptsReturn="True"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                Text="{Binding TareaTemporal.Descripcion, UpdateSourceTrigger=PropertyChanged}"
+                TextWrapping="Wrap" />
+            <TextBlock
+                Margin="0,0,0,5"
+                Style="{StaticResource MaterialDesignTitleSmallTextBlock}"
+                Text="Fecha Creación:" />
+            <DatePicker
+                Margin="0,0,0,10"
+                SelectedDate="{Binding TareaTemporal.FechaCreacion, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource MaterialDesignFilledDatePicker}" />
+            <TextBlock
+                Margin="0,0,0,5"
+                Style="{StaticResource MaterialDesignTitleSmallTextBlock}"
+                Text="Usuario:" />
+            <ComboBox
+                Margin="0,0,0,20"
+                DisplayMemberPath="Nombre"
+                ItemsSource="{Binding Usuarios}"
+                SelectedItem="{Binding TareaTemporal.Usuario, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource MaterialDesignFilledComboBox}" />
+            <TextBlock
+                Margin="0,0,0,5"
+                Style="{StaticResource MaterialDesignTitleSmallTextBlock}"
+                Text="Categoría:" />
+            <ComboBox
+                Margin="0,0,0,20"
+                DisplayMemberPath="Nombre"
+                ItemsSource="{Binding Categorias}"
+                SelectedItem="{Binding TareaTemporal.Categoria, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource MaterialDesignFilledComboBox}" />
+            <Button
+                Background="#009cdd"
+                Command="{Binding GuardarCommand}"
+                Content="{Binding ContenidoBotonFormularioTarea}"
+                Style="{StaticResource MaterialDesignFlatButton}" />
+        </StackPanel>
+    </Grid>
+</Window>

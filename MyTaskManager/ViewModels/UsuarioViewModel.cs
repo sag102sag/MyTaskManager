@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MyTaskManager.Models;
 using MyTaskManager.Services;
+using MyTaskManager.Views;
 
 namespace MyTaskManager.ViewModels
 {
@@ -30,13 +31,15 @@ namespace MyTaskManager.ViewModels
         public UsuarioViewModel(UsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
-            AddUsuarioCommand = new RelayCommand(async _ => await AddUsuario());
+            AddUsuarioCommand = new RelayCommand(async _ => await AbrirFormulario(null));
+            EditarUsuarioCommand = new RelayCommand(async usuario => await AbrirFormulario((Usuario) usuario));
             DeleteUsuarioCommand = new RelayCommand(async usuario => await DeleteUsuario((Usuario)usuario));
             DeleteUltimoUsuarioCommand = new RelayCommand(async _ => await DeleteUltimoUsuario());
             _ =CargarUsuarios();
         }
 
         public ICommand AddUsuarioCommand { get; }
+        public ICommand EditarUsuarioCommand { get; }
         public ICommand DeleteUsuarioCommand { get; }
         public ICommand DeleteUltimoUsuarioCommand { get; }
 
@@ -51,16 +54,15 @@ namespace MyTaskManager.ViewModels
             }
         }
 
-        public async Task AddUsuario()
+        public async Task AbrirFormulario(Usuario usuario)
         {
-            var nuevoUsuario = new Usuario
-            {
-                Nombre = "Nuevo Usuario",
-                Email = "nuevo@gmail.com",
-            };
+            var window = new UsuarioFormWindow(_usuarioService, usuario);
+            bool? result = window.ShowDialog();
 
-            await _usuarioService.AddAsync(nuevoUsuario);
-            Usuarios.Add(nuevoUsuario);
+            if(result == true)
+            {
+                await CargarUsuarios();
+            }
         }
 
         public async Task DeleteUsuario(Usuario usuario)

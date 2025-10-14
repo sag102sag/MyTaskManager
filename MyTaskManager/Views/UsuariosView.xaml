@@ -50,15 +50,23 @@
                     Width="250"
                     Binding="{Binding Email}"
                     Header="Email" />
-                <DataGridTemplateColumn Width="100" Header="Acciones">
+                <DataGridTemplateColumn Width="*" Header="Acciones">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button
-                                Padding="10,5"
-                                Command="{Binding DataContext.DeleteUsuarioCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                CommandParameter="{Binding}"
-                                Content="Eliminar Usuario"
-                                Style="{StaticResource MaterialDesignRaisedButton}" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Padding="10,5"
+                                    Command="{Binding DataContext.DeleteUsuarioCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"
+                                    Content="Eliminar Usuario"
+                                    Style="{StaticResource MaterialDesignRaisedButton}" />
+                                <Button
+                                    Padding="10,5"
+                                    Command="{Binding DataContext.EditarUsuarioCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"
+                                    Content="Editar Usuario"
+                                    Style="{StaticResource MaterialDesignRaisedButton}" />
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

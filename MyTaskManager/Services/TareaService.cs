@@ -18,5 +18,21 @@ namespace MyTaskManager.Services
         {
             return await _context.Tareas.Where(t => t.Titulo.Contains(titulo)).ToListAsync();
         }
+
+        public async Task<Tarea> GetByIdAsync(int id)
+        {
+            return await _context.Tareas
+                .Include(t => t.Usuario)
+                .Include(t => t.Categoria)
+                .FirstOrDefaultAsync(t => t.Id == id);
+        }
+
+        public async Task<IEnumerable<Tarea>> GetAllAsync()
+        {
+            return await _context.Tareas
+                .Include(t => t.Categoria)
+                .Include(t => t.Usuario)
+                .ToListAsync();
+        }
     }
 }
