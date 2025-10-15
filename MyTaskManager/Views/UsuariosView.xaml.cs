@@ -23,19 +23,9 @@ namespace MyTaskManager.Views
     /// </summary>
     public partial class UsuariosView : UserControl
     {
-        private UsuarioViewModel _viewModel;
-
         public UsuariosView()
         {
             InitializeComponent();
-
-            var context = new AppDbContext();
-            var usuarioService = new UsuarioService(context);
-
-            _viewModel = new UsuarioViewModel(usuarioService);
-            DataContext = _viewModel;
         }
-
-        
     }
 }

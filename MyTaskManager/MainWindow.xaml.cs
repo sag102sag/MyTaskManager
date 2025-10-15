@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
+using MyTaskManager.Views;
 using MyTaskManager.ViewModels;
 
 namespace MyTaskManager
@@ -19,9 +21,10 @@ namespace MyTaskManager
     {
         public MainWindow()
         {
-            InitializeComponent();          
+            InitializeComponent();      
+            DataContext = new MainViewModel();
         }
 
-
+        
     }
 }

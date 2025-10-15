@@ -22,16 +22,9 @@ namespace MyTaskManager.Views
     /// </summary>
     public partial class CategoriaView : UserControl
     {
-        private CategoriaViewModel _viewModel;
         public CategoriaView()
         {
             InitializeComponent();
-
-            var context = new Data.AppDbContext();
-            var categoriaService = new CategoriaService(context);
-
-            _viewModel = new CategoriaViewModel(categoriaService);
-            DataContext = _viewModel;
         }
     }
 }

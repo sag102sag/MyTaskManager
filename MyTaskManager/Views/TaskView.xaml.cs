@@ -23,18 +23,9 @@ namespace MyTaskManager.Views
     /// </summary>
     public partial class TaskView : UserControl
     {
-        private TareaViewModel _viewModel;
         public TaskView()
         {
             InitializeComponent();
-
-            var context = new AppDbContext();
-            var tareaService = new TareaService(context);
-            var usuarioService = new UsuarioService(context);
-            var categoriaService = new CategoriaService(context);
-
-            _viewModel = new TareaViewModel(tareaService, usuarioService, categoriaService);
-            DataContext = _viewModel;
         }
     }
 }
